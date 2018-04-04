@@ -4,7 +4,7 @@
   <meta charset="utf-8"> 
   <meta name="viewport" content="width=device-width"> 
   <title>Sistem Informasi Geografis</title> 
-    <h1><center>Sistem Informasi Geografis</center></h1> 
+    <h1><center>Sistem Informasi Geografis Bandar Lampung</center></h1> 
   <script src="http://maps.googleapis.com/maps/api/js"></script> 
 
   <script> 
@@ -21,3 +21,26 @@ function taruhMarker(peta, posisiTitik){
         map: peta 
       }); 
     } 
+  document.getElementById("lat").value = posisiTitik.lat(); 
+    document.getElementById("lng").value = posisiTitik.lng(); 
+ document.getElementById("info").value = posisiTitik.info(); 
+     
+} 
+   
+function initialize() { 
+  var propertiPeta = { 
+    center:new google.maps.LatLng(-5.3971, 105.2668), 
+    zoom:13, 
+    mapTypeId:google.maps.MapTypeId.ROADMAP 
+  }; 
+   
+  var peta = new google.maps.Map(document.getElementById("googleMap"), propertiPeta); 
+  var infoWindow = new google.maps.InfoWindow; 
+  google.maps.event.addListener(peta, 'click', function(event) { 
+    taruhMarker(this, event.latLng); 
+  }); 
+  google.maps.event.addListener(peta,'rightclick',function(event){ 
+  marker.setPosition(null); 
+  }); 
+
+} 
